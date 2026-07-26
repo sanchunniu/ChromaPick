@@ -15,27 +15,34 @@
 - **实时预览** — 底部大色块实时显示当前颜色。
 - **输入校验** — HEX 或 RGB 输入不合法时给出红色提示。
 
-## 快速使用
+## 下载
 
-### 直接运行 EXE（推荐）
+### 方式一：GitHub Releases
 
-从 [Releases](https://github.com/sanchunniu/ChromaPick/releases) 下载最新版 颜色转换器.exe，双击即可运行，无需安装 Python 或任何依赖。
+从 [Releases](https://github.com/sanchunniu/ChromaPick/releases) 页面下载最新版 颜色转换器.exe。
 
-### 从源码运行
+### 方式二：蓝奏云
 
-#### 安装依赖
+下载地址：[https://wwaxl.lanzoum.com/b00g4cyzcf](https://wwaxl.lanzoum.com/b00g4cyzcf)  
+提取密码：colr
+
+> 蓝奏云和 GitHub Releases 的内容保持一致，任选一个渠道下载即可。
+
+## 从源码运行
+
+### 安装依赖
 
 ```bash
 pip install PyQt5
 ```
 
-#### 启动
+### 启动
 
 ```bash
 python 颜色转换器.py
 ```
 
-#### 打包成 EXE
+### 打包成 EXE
 
 ```bash
 pip install pyinstaller
