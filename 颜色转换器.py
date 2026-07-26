@@ -6,7 +6,7 @@ from PyQt5.QtWidgets import (
     QApplication, QWidget, QDialog, QVBoxLayout, QHBoxLayout,
     QLabel, QLineEdit, QSpinBox, QPushButton, QFrame
 )
-from PyQt5.QtCore import Qt, QTimer
+from PyQt5.QtCore import Qt, QTimer, pyqtSignal
 from PyQt5.QtGui import QFont, QColor, QIcon, QPainter, QPen, QPixmap
 
 
@@ -25,6 +25,7 @@ def load_icon(filename):
 
 class ScreenPicker(QWidget):
     """全屏取色器覆盖层"""
+    color_picked = pyqtSignal(object)
 
     def __init__(self):
         super().__init__()
@@ -44,11 +45,12 @@ class ScreenPicker(QWidget):
         self.scale = 8
 
     def paintEvent(self, event):
-        if self.mouse_pos is None:
-            return
-        mx, my = self.mouse_pos.x(), self.mouse_pos.y()
         painter = QPainter(self)
         painter.drawPixmap(0, 0, self.pixmap)
+        if self.mouse_pos is None:
+            painter.end()
+            return
+        mx, my = self.mouse_pos.x(), self.mouse_pos.y()
 
         # 放大镜
         half = self.mag_size // 2
@@ -103,15 +105,15 @@ class ScreenPicker(QWidget):
         if event.button() == Qt.LeftButton:
             color = self.pixmap.toImage().pixelColor(
                 event.pos().x(), event.pos().y())
-            self.selected_color = color
+            self.color_picked.emit(color)
             self.close()
         elif event.button() == Qt.RightButton:
-            self.selected_color = None
+            self.color_picked.emit(None)
             self.close()
 
     def keyPressEvent(self, event):
         if event.key() == Qt.Key_Escape:
-            self.selected_color = None
+            self.color_picked.emit(None)
             self.close()
 
 
@@ -334,27 +336,24 @@ class MainWindow(QWidget):
 
     def _show_picker(self):
         self.picker = ScreenPicker()
+        self.picker.color_picked.connect(self._on_picker_color)
         self.picker.show()
-        self._picker_timer = QTimer()
-        self._picker_timer.timeout.connect(self._check_picker)
-        self._picker_timer.start(100)
 
-    def _check_picker(self):
-        if not self.picker.isVisible():
-            self._picker_timer.stop()
-            color = getattr(self.picker, "selected_color", None)
-            if color is not None:
-                self._updating = True
-                self.r_spin.setValue(color.red())
-                self.g_spin.setValue(color.green())
-                self.b_spin.setValue(color.blue())
-                self.hex_input.setText(
-                    f"#{color.red():02X}{color.green():02X}{color.blue():02X}")
-                self.hex_error.setVisible(False)
-                self.rgb_error.setVisible(False)
-                self._updating = False
-                self.update_color(color.red(), color.green(), color.blue())
-            self.show()
+    def _on_picker_color(self, color):
+        self.picker.deleteLater()
+        self.picker = None
+        if color is not None:
+            self._updating = True
+            self.r_spin.setValue(color.red())
+            self.g_spin.setValue(color.green())
+            self.b_spin.setValue(color.blue())
+            self.hex_input.setText(
+                f"#{color.red():02X}{color.green():02X}{color.blue():02X}")
+            self.hex_error.setVisible(False)
+            self.rgb_error.setVisible(False)
+            self._updating = False
+            self.update_color(color.red(), color.green(), color.blue())
+        self.show()
 
     def random_color(self):
         r, g, b = random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)

@@ -19,7 +19,7 @@
 
 ### 方式一：GitHub Releases
 
-从 [Releases](https://github.com/sanchunniu/ChromaPick/releases) 页面下载最新版 颜色转换器.exe。
+从 [Releases](https://github.com/sanchunniu/ChromaPick/releases) 页面下载最新版压缩包，解压后双击运行。
 
 ### 方式二：蓝奏云
 
