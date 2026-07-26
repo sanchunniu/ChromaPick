@@ -1,46 +1,37 @@
 # ChromaPick
 
-> Pick, convert, and explore colors — right from your screen.
+> 从屏幕拾取颜色，轻松转换格式。
 
-**ChromaPick** is a lightweight desktop color tool built with PyQt5. It lets you grab any color from your screen, convert effortlessly between HEX and RGB, generate random colors, and compute complementary colors — all in a clean, intuitive interface.
+**ChromaPick** 是一款基于 PyQt5 的轻量级桌面颜色工具。它可以从屏幕上任意位置拾取颜色，在 HEX 和 RGB 之间自由转换，随机生成颜色，一键计算互补色——界面简洁直观。
 
 ---
 
-## Features
+## 功能特性
 
-- **Screen Color Picker** — Click anywhere on your screen to capture a pixel's color, with a live magnifier for precision.
-- **HEX to RGB Conversion** — Input in either format and both update in real time. Supports #RRGGBB, RRGGBB, #RGB, and RGB shorthand.
-- **Random Color Generator** — Instantly generate a fully random RGB color.
-- **Complementary Color** — One-click calculation of the complementary color (255 - R, 255 - G, 255 - B).
-- **Live Preview** — A large color swatch shows your current color at a glance.
-- **Input Validation** — Visual feedback when HEX or RGB input is invalid.
+- **屏幕拾色器** — 点击屏幕上任意位置抓取颜色，带放大镜辅助精确定位。
+- **HEX / RGB 互转** — 输入任意一种格式，另一侧实时同步更新。支持 #RRGGBB、RRGGBB、#RGB 和 RGB 简写。
+- **随机颜色** — 一键生成完全随机的 RGB 颜色。
+- **互补色** — 一键计算当前颜色的互补色（255 - R, 255 - G, 255 - B）。
+- **实时预览** — 底部大色块实时显示当前颜色。
+- **输入校验** — HEX 或 RGB 输入不合法时给出红色提示。
 
-## Screenshots
+## 运行
 
-*(To be added)*
+### 安装依赖
 
-## Getting Started
-
-### Prerequisites
-
-- Python 3.7+
-- PyQt5
-
-### Install Dependencies
-
-`ash
+```bash
 pip install PyQt5
-`
+```
 
-### Run
+### 启动
 
-`ash
+```bash
 python 颜色转换器.py
-`
+```
 
-### Package as Executable
+### 打包成 EXE
 
-`ash
+```bash
 pip install pyinstaller
 pyinstaller --onefile --windowed ^
   --add-data "color_switch.ico;." ^
@@ -48,45 +39,46 @@ pyinstaller --onefile --windowed ^
   --add-data "random_color.ico;." ^
   --add-data "opposite_color.ico;." ^
   --icon "color_switch.ico" "颜色转换器.py"
-`
+```
 
-The standalone executable will be created in the dist/ folder.
+打包完成后可执行文件在 dist/ 目录下。
 
-## Usage
+## 操作说明
 
-| Control | Action |
+| 控件 | 说明 |
 |---|---|
-| **HEX input** | Type a hex color code (e.g. #FF0000 or FF0000) |
-| **RGB spinboxes** | Adjust R, G, B values (0-255) with the spinner or type directly |
-| **Pick (拾色器)** | Click to enter screen-picking mode, then click any pixel |
-| **Random (随机颜色)** | Generate a random color instantly |
-| **Complement (取互补色)** | Calculate the complementary color of the current selection |
-| **About (关于)** | View version info, author details, and links |
-| **Quit (退出)** | Close the application |
+| **HEX 输入框** | 输入十六进制颜色代码，如 #FF0000 或 FF0000 |
+| **RGB 微调框** | 分别调整 R、G、B 值（0-255） |
+| **拾色器** | 进入屏幕取色模式，点击任意像素获取颜色 |
+| **随机颜色** | 随机生成一个 RGB 颜色 |
+| **取互补色** | 计算当前颜色的互补色 |
+| **关于** | 查看版本信息、作者及链接 |
+| **退出** | 关闭程序 |
 
-## Project Structure
+## 项目结构
 
-`
+```
 ChromaPick/
-  颜色转换器.py       # Main application
-  color_switch.ico    # Window icon
-  pick_color.ico      # Picker button icon
-  random_color.ico    # Random button icon
-  opposite_color.ico  # Complement button icon
+  颜色转换器.py       # 主程序
+  color_switch.ico    # 窗口图标
+  pick_color.ico      # 拾色器按钮图标
+  random_color.ico    # 随机颜色按钮图标
+  opposite_color.ico  # 互补色按钮图标
+  .gitignore
   README.md
-`
+```
 
-## Version
+## 版本信息
 
-**V1.3** — July 26, 2026
+**V1.3** — 2026年7月26日
 
-## Author
+## 作者
 
 **三春牛-创客**
 
-- Bilibili: [space.bilibili.com/650793568](https://space.bilibili.com/650793568)
-- GitHub: *(Repository URL — update once the repo is created)*
+- B站主页: [space.bilibili.com/650793568](https://space.bilibili.com/650793568)
+- 仓库地址: [github.com/sanchunniu/ChromaPick](https://github.com/sanchunniu/ChromaPick)
 
-## License
+## 许可证
 
-This project is open source. Feel free to use, modify, and share.
+本项目为开源项目，可自由使用、修改和分享。
