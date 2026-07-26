@@ -453,7 +453,7 @@ class AboutDialog(QDialog):
         layout.addWidget(bilibili)
 
         github = QLabel(
-            '<a href="https://github.com" '
+            '<a href="https://github.com/sanchunniu/ChromaPick" '
             'style="color: #0066cc; text-decoration: underline;">'
             '仓库地址（Github）（求个Star!）</a>'
         )

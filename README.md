@@ -15,25 +15,31 @@
 - **实时预览** — 底部大色块实时显示当前颜色。
 - **输入校验** — HEX 或 RGB 输入不合法时给出红色提示。
 
-## 运行
+## 快速使用
 
-### 安装依赖
+### 直接运行 EXE（推荐）
+
+从 [Releases](https://github.com/sanchunniu/ChromaPick/releases) 下载最新版 颜色转换器.exe，双击即可运行，无需安装 Python 或任何依赖。
+
+### 从源码运行
+
+#### 安装依赖
 
 ```bash
 pip install PyQt5
 ```
 
-### 启动
+#### 启动
 
 ```bash
 python 颜色转换器.py
 ```
 
-### 打包成 EXE
+#### 打包成 EXE
 
 ```bash
 pip install pyinstaller
-pyinstaller --onefile --windowed ^
+pyinstaller -w -F ^
   --add-data "color_switch.ico;." ^
   --add-data "pick_color.ico;." ^
   --add-data "random_color.ico;." ^
